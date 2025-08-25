@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: page2
+  labels:
+    app: page2
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: page2
+  template:
+    metadata:
+      labels:
+        app: page2
+    spec:
+      containers:
+      - name: page2
+        image: page2:latest
+        imagePullPolicy: Never
+        ports:
+        - containerPort: 80

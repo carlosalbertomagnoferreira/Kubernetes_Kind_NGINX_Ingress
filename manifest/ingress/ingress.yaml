@@ -1,0 +1,42 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: myingress
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+    nginx.ingress.kubernetes.io/use-regex: "true"
+  labels:
+    app.kubernetes.io/name: myingress
+spec:
+  ingressClassName: nginx
+  rules:
+  - http:
+      paths:
+      - path: "/"
+        pathType: Prefix
+        backend:
+          service:
+            name: page1-service
+            port: 
+              number: 80
+      - path: "/page2"
+        pathType: Prefix
+        backend:
+          service:
+            name: page2-service
+            port: 
+              number: 80
+      - path: "/page3"
+        pathType: Prefix
+        backend:
+          service:
+            name: page3-service
+            port: 
+              number: 80
+      - path: "/page1"
+        pathType: Prefix
+        backend:
+          service:
+            name: page1-service
+            port: 
+              number: 80
